@@ -1,13 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
-import List from './components/List.jsx';
+import Stats from './components/Stats.jsx';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
-      items: []
+      items: [],
+      stats: {
+        fighting: 0,
+        versitility: 0,
+        supporting: 0,
+        farming: 0,
+        pushing: 0
+      }
     }
   }
 
@@ -28,7 +35,8 @@ class App extends React.Component {
   render () {
     return (<div>
       <h1>Item List</h1>
-      <List items={this.state.items}/>
+      <Stats stats={this.state.stats}/>
+
     </div>)
   }
 }
