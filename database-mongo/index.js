@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://localhost/dota');
 
 var db = mongoose.connection;
 
@@ -11,19 +11,19 @@ db.once('open', function() {
   console.log('mongoose connected successfully');
 });
 
-var itemSchema = mongoose.Schema({
+var StatsSchema = mongoose.Schema({
   quantity: Number,
   description: String
 });
 
-var Item = mongoose.model('Item', itemSchema);
+var Stat = mongoose.model('Stat', StatsSchema);
 
 var selectAll = function(callback) {
-  Item.find({}, function(err, items) {
+  Stat.find({}, function(err, stats) {
     if(err) {
       callback(err, null);
     } else {
-      callback(null, items);
+      callback(null, stats);
     }
   });
 };

@@ -22,7 +22,9 @@ class App extends React.Component {
     $.ajax({
       url: '/items', 
       success: (data) => {
+        console.log(data);
         this.setState({
+
           items: data
         })
       },
@@ -34,7 +36,7 @@ class App extends React.Component {
 
   render () {
     return (<div>
-      <h1>Item List</h1>
+      <h1>Your Stats</h1>
       <Stats stats={this.state.stats}/>
 
     </div>)
