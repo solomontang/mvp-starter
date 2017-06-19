@@ -17,28 +17,28 @@ Once the project moves into development, the press release can be used as a touc
  -->
  
 ## Heading ##
-  > Name the product in a way the reader (i.e. your target customers) will understand.
+  > Dota 2 Stats Viewer
 
 ## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  > Players will be able to view their recent games stats just like they can in the Dota 2 client without having to open the game.
 
 ## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  > Dota 2 is a fiercely competitive online game. Use this app to view in-game statistics from your most recent 20 matches and compare directly with your friends.
 
 ## Problem ##
-  > Describe the problem your product solves.
+  > Currently, the only way to view this particular information is if you open the Dota 2 client and click on your profile. There is no online portal to access this information.
 
 ## Solution ##
-  > Describe how your product elegantly solves the problem.
+  > This app uses the OpenDota API to recreate the stats graph you would see in-game.
 
 ## Quote from You ##
-  > A quote from a spokesperson in your company.
+  > "Bring your Dota 2 stats with you."
 
 ## How to Get Started ##
-  > Describe how easy it is to get started.
+  > Type in your steamID into the search bar and behold your beloved Dota 2 Pentagon of stats.
 
 ## Customer Quote ##
-  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  > "Now I can see how hard my friends are feeding anywhere in the world!"
 
 ## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
+  > Check out and support the folks at OpenDota who made this possible.
