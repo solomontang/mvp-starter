@@ -15,14 +15,14 @@ db.once('open', function() {
 var StatsSchema = new Schema({
   username: String,
   steamId: {type: Number, unique: true},
-  stats: Schema.Types.Mixed
+  stats: Schema.Types.Mixed,
 });
 
 StatsSchema.methods.selectAll = function(cb) {
-  return this.model('Stat').find({ }, cb);
+  return this.model('PlayerStat').find({}, cb);
 };
 
-var Stat = mongoose.model('Stat', StatsSchema);
+var Stat = mongoose.model('PlayerStat', StatsSchema);
 
 
 
@@ -37,4 +37,4 @@ var Stat = mongoose.model('Stat', StatsSchema);
 // };
 
 // module.exports.selectAll = selectAll;
-module.exports = mongoose.model('Stat');
+module.exports = mongoose.model('PlayerStat');

@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
+import Search from './components/Search.jsx';
 import Stats from './components/Stats.jsx';
 
 class App extends React.Component {
@@ -19,24 +20,42 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    $.ajax({
-      url: '/items', 
-      success: (data) => {
-        console.log(data);
-        this.setState({
+    // $.ajax({
+    //   url: '/stats', 
+    //   success: (data) => {
+    //     console.log(data);
+    //     // this.setState({
 
-          items: data
-        })
-      },
-      error: (err) => {
-        console.log('err', err);
-      }
-    });
+    //     //   items: data
+    //     // })
+    //   },
+    //   error: (err) => {
+    //     console.log('err', err);
+    //   }
+    // });
+  }
+
+  search(term) {
+    console.log(term);
+    // $.ajax({
+    //   url: '/stats', 
+    //   success: (data) => {
+    //     console.log(data);
+    //     // this.setState({
+
+    //     //   items: data
+    //     // })
+    //   },
+    //   error: (err) => {
+    //     console.log('err', err);
+    //   }
+    // });
   }
 
   render () {
     return (<div>
       <h1>Your Stats</h1>
+      <Search onSearch ={this.search.bind(this)} />
       <Stats stats={this.state.stats}/>
 
     </div>)
