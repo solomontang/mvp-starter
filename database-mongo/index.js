@@ -24,6 +24,8 @@ var StatsSchema = mongoose.Schema({
 
 var Stat = mongoose.model('PlayerStat', StatsSchema);
 
+// console.log(Stat.findOneAndUpdate());
+
 var selectAll = function(callback) {
   Stat.find({}, function(err, stats) {
     if(err) {
@@ -34,5 +36,5 @@ var selectAll = function(callback) {
   });
 };
 
-module.exports.Stat = Stat;
-module.exports.selectAll = selectAll;
+module.exports = Stat;
+// module.exports.selectAll = selectAll;

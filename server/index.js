@@ -3,21 +3,11 @@ var bodyParser = require('body-parser');
 var request = require('request');
 var queryString = require('query-string');
 
+
 // UNCOMMENT THE DATABASE YOU'D LIKE TO USE
 // var items = require('../database-mysql');
-var stats = require('../database-mongo/');
-
-// var Stats = new db({
-//   username: 'santaslilhe1pe12',
-//   steamID: 1,
-//   stats: {
-//     fighting: 0,
-//     versitility: 0,
-//     supporting: 0,
-//     farming: 0,
-//     pushing: 0
-//   }
-// }, {collection: 'PlayerStat'});
+var stats = require('../database-mongo/index.js');
+var utils = require('../database-mongo/utils.js');
 
 var app = express();
 
@@ -41,7 +31,7 @@ app.get('/stats', function (req, res) {
   //   }
   // });
   // console.log(req.body);
-  // res.sendStatus(200);
+  res.sendStatus(200);
 });
 
 app.post('/stats', function (req, res) {
@@ -59,20 +49,23 @@ app.post('/stats', function (req, res) {
 
     request(`https://api.opendota.com/api/players/${accId}/recentMatches`, function (err, recentMatches) {
       recentMatches = JSON.parse(recentMatches.body);
-      console.log(recentMatches);
+      // console.log(recentMatches);
+      utils.CalculateStats(recentMatches);
       var newPlayer = {
         username: alias,
         steamId: accId,
         stats: recentMatches
-      }
+      };
 
-      var instance = new stats.Stat(newPlayer);
-      instance.save( err => {
+      var options = {
+        new: true,
+        upsert: true
+      };
+      stats.findOneAndUpdate({username: alias}, newPlayer, options, function (err, docs) {
         if (err) {
-          console.log('Entry Already Exists');
           res.sendStatus(500);
         } else {
-          res.send(recentMatches);
+          res.send(docs);
         }
       });
     });
