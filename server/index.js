@@ -43,32 +43,37 @@ app.post('/stats', function (req, res) {
   qStr = queryString.stringify(params);
 
   request('https://api.opendota.com/api/search?' + qStr, function( err, player) {
-    var body = JSON.parse(player.body);
-    var accId = body[0].account_id;
-    var alias = body[0].personaname;
+    if (err) {
+      console.log('Player not found');
+      res.sendStatus(500);
+    } else {
+      var body = JSON.parse(player.body);
+      var accId = body[0].account_id;
+      var alias = body[0].personaname;
 
-    request(`https://api.opendota.com/api/players/${accId}/recentMatches`, function (err, recentMatches) {
-      recentMatches = JSON.parse(recentMatches.body);
-      // console.log(recentMatches);
-      var calcStats = utils.CalculateStats(recentMatches);
-      var newPlayer = {
-        username: alias,
-        steamId: accId,
-        stats: calcStats
-      };
+      request(`https://api.opendota.com/api/players/${accId}/recentMatches`, function (err, recentMatches) {
+        recentMatches = JSON.parse(recentMatches.body);
+        // console.log(recentMatches);
+        var calcStats = utils.CalculateStats(recentMatches);
+        var newPlayer = {
+          username: alias,
+          steamId: accId,
+          stats: calcStats
+        };
 
-      var options = {
-        new: true,
-        upsert: true
-      };
-      stats.findOneAndUpdate({username: alias}, newPlayer, options, function (err, docs) {
-        if (err) {
-          res.sendStatus(500);
-        } else {
-          res.send(docs);
-        }
+        var options = {
+          new: true,
+          upsert: true
+        };
+        stats.findOneAndUpdate({username: alias}, newPlayer, options, function (err, docs) {
+          if (err) {
+            res.sendStatus(500);
+          } else {
+            res.send(docs);
+          }
+        });
       });
-    });
+    }
   });
 });
 

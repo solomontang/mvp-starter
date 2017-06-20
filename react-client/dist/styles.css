@@ -1,3 +1,24 @@
+.canvas {
+  position:relative;
+}
+
+.statNumbers{
+  position:relative;
+  color: white;
+}
+
+canvas#background {
+  background-color: #153260;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index:0;
+}
+
 canvas#canvas {
-  background-color: #0c1c35;
+  position:absolute;
+  top: 0px;
+  left: 0px;
+  z-index:1;
+
 }
