@@ -17,13 +17,17 @@ class Search extends React.Component {
     })
   }
 
-  search() {
+  search(e) {
     this.props.onSearch(this.state.term);
+    e.preventDefault();
   }
+
   render() {
     return (<div>
+      <form onSubmit={this.search}>
         <input onChange={this.onChange}></input>
-        <button onClick={this.search}></button>
+        <button type='submit'>Submit</button>
+      </form>
     </div>)
   }
 

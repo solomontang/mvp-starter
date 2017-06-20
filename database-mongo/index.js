@@ -12,29 +12,29 @@ db.once('open', function() {
   console.log('mongoose connected successfully');
 });
 
-var StatsSchema = new Schema({
+var StatsSchema = mongoose.Schema({
   username: String,
   steamId: {type: Number, unique: true},
   stats: Schema.Types.Mixed,
 });
 
-StatsSchema.methods.selectAll = function(cb) {
-  return this.model('PlayerStat').find({}, cb);
-};
+// StatsSchema.methods.selectAll = function(cb) {
+//   return this.model('PlayerStat').find({}, cb);
+// };
 
 var Stat = mongoose.model('PlayerStat', StatsSchema);
 
 
 
-// var selectAll = function(callback) {
-//   Stat.find({}, function(err, stats) {
-//     if(err) {
-//       callback(err, null);
-//     } else {
-//       callback(null, stats);
-//     }
-//   });
-// };
+var selectAll = function(callback) {
+  Stat.find({}, function(err, stats) {
+    if(err) {
+      callback(err, null);
+    } else {
+      callback(null, stats);
+    }
+  });
+};
 
-// module.exports.selectAll = selectAll;
-module.exports = mongoose.model('PlayerStat');
+module.exports.Stat = Stat;
+module.exports.selectAll = selectAll;

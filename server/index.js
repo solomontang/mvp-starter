@@ -1,8 +1,11 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var request = require('request');
+var queryString = require('query-string');
+
 // UNCOMMENT THE DATABASE YOU'D LIKE TO USE
 // var items = require('../database-mysql');
-var db = require('../database-mongo/index.js');
+var stats = require('../database-mongo/');
 
 // var Stats = new db({
 //   username: 'santaslilhe1pe12',
@@ -29,6 +32,7 @@ app.use(bodyParser.json());
 // app.use(express.static(__dirname + '/../node_modules'));
 
 app.get('/stats', function (req, res) {
+
   // Stats.selectAll(function(err, data) {
   //   if(err) {
   //     res.sendStatus(500);
@@ -36,9 +40,32 @@ app.get('/stats', function (req, res) {
   //     res.json(data.stats);
   //   }
   // });
-  console.log(req.body);
-  res.sendStatus(200);
+  // console.log(req.body);
+  // res.sendStatus(200);
 });
+
+app.post('/stats', function (req, res) {
+  console.log(req.body);
+  var params = {
+    q: req.body.name,
+    similarity: 1
+  }
+  qStr = queryString.stringify(params);
+  request('https://api.opendota.com/api/search?' + qStr, function( err, player) {
+    var body = JSON.parse(player.body);
+    var accId = body[0].account_id;
+    console.log(accId);
+    // res.send(data.body);
+    // var params = {
+
+    // }
+    request(`https://api.opendota.com/api/players/${accId}/recentMatches`, function (err, recentMatches) {
+      console.log(recentMatches);
+      res.send(JSON.parse(recentMatches.body));
+    });
+  });
+  
+})
 
 app.listen(3000, function() {
   console.log('listening on port 3000!');

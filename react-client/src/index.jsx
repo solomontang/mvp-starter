@@ -37,19 +37,21 @@ class App extends React.Component {
 
   search(term) {
     console.log(term);
-    // $.ajax({
-    //   url: '/stats', 
-    //   success: (data) => {
-    //     console.log(data);
-    //     // this.setState({
+    $.ajax({
+      type: 'POST',
+      url: '/stats', 
+      data: {name: term},
+      success: (data) => {
+        console.log(data);
+        // this.setState({
 
-    //     //   items: data
-    //     // })
-    //   },
-    //   error: (err) => {
-    //     console.log('err', err);
-    //   }
-    // });
+        //   items: data
+        // })
+      },
+      error: (err) => {
+        console.log('err', err);
+      }
+    });
   }
 
   render () {
