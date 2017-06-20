@@ -34,6 +34,16 @@ app.get('/stats', function (req, res) {
   res.sendStatus(200);
 });
 
+app.post('/add', function (req, res) {
+  console.log('im in add');
+  if (err) {
+    res.sendStatus(500);
+  } else {
+    console.log(req.body);
+    res.send('I got it');
+  }
+});
+
 app.post('/stats', function (req, res) {
   console.log(req.body);
   var params = {
@@ -44,10 +54,10 @@ app.post('/stats', function (req, res) {
 
   request('https://api.opendota.com/api/search?' + qStr, function( err, player) {
     if (err) {
-      console.log('Player not found');
       res.sendStatus(500);
-    } else {
-      var body = JSON.parse(player.body);
+    }
+    var body = JSON.parse(player.body);
+    if (body.length) {
       var accId = body[0].account_id;
       var alias = body[0].personaname;
 
@@ -73,6 +83,8 @@ app.post('/stats', function (req, res) {
           }
         });
       });
+    } else {
+      res.sendStatus(404);
     }
   });
 });

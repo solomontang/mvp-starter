@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import Search from './components/Search.jsx';
 import Stats from './components/Stats.jsx';
+import FriendSelect from './components/FriendSelect.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -35,11 +36,12 @@ class App extends React.Component {
     // });
   }
 
-  search(term) {
+  search(term, endpoint) {
     console.log(term);
+    console.log(endpoint);
     $.ajax({
       type: 'POST',
-      url: '/stats', 
+      url: endpoint, 
       data: {name: term},
       success: (data) => {
         this.setState({
@@ -55,7 +57,7 @@ class App extends React.Component {
   render () {
     return (<div>
       <h1>Your Stats</h1>
-      <Search onSearch ={this.search.bind(this)} />
+      <Search onSearch={this.search.bind(this)} />
       <Stats stats={this.state.stats}/>
 
     </div>)

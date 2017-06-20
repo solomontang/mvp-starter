@@ -16,6 +16,7 @@ var StatsSchema = mongoose.Schema({
   username: String,
   steamId: {type: Number, unique: true},
   stats: Schema.Types.Mixed,
+  friends: []
 });
 
 var Stat = mongoose.model('PlayerStat', StatsSchema);

@@ -81,11 +81,11 @@ class Pentagon extends React.Component {
     ctx.setLineDash([]);
     ctx.translate(250,270);
     
-    console.log('draw penta', playerStats);
+    // console.log('draw penta', playerStats);
     for (var i = 0; i < 5; i++) {
       var x = Math.cos((18+i*72)/180 * Math.PI) * 200 * playerStats[i];
       var y = -Math.sin((18+i*72)/180*Math.PI) * 200 * playerStats[i];
-      console.log('x: ' + x, 'y: ' + y);
+      // console.log('x: ' + x, 'y: ' + y);
       ctx.lineTo(x, y);
     }
 
