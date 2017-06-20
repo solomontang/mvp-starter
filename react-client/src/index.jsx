@@ -10,11 +10,11 @@ class App extends React.Component {
     this.state = { 
       recentMatches: [],
       stats: {
-        fighting: 0,
-        versitility: 0,
-        supporting: 0,
-        farming: 0,
-        pushing: 0
+        fighting: 0.5,
+        farming: 0.5,
+        pushing: 0.5,
+        supporting: 0.5,
+        versitility: 0.5
       }
     }
   }
@@ -42,9 +42,8 @@ class App extends React.Component {
       url: '/stats', 
       data: {name: term},
       success: (data) => {
-        console.log(data);
         this.setState({
-          recentMatches: data
+          stats: data.stats
         });
       },
       error: (err) => {

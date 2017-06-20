@@ -50,11 +50,11 @@ app.post('/stats', function (req, res) {
     request(`https://api.opendota.com/api/players/${accId}/recentMatches`, function (err, recentMatches) {
       recentMatches = JSON.parse(recentMatches.body);
       // console.log(recentMatches);
-      utils.CalculateStats(recentMatches);
+      var calcStats = utils.CalculateStats(recentMatches);
       var newPlayer = {
         username: alias,
         steamId: accId,
-        stats: recentMatches
+        stats: calcStats
       };
 
       var options = {
