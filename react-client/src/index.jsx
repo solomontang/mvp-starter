@@ -10,11 +10,11 @@ class App extends React.Component {
     this.state = { 
       recentMatches: [],
       stats: {
-        fighting: 0.5,
         farming: 0.5,
+        fighting: 0.5,
+        versitility: 0.5,
         pushing: 0.5,
-        supporting: 0.5,
-        versitility: 0.5
+        supporting: 0.5
       }
     }
   }
