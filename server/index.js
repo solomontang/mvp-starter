@@ -35,13 +35,8 @@ app.get('/stats', function (req, res) {
 });
 
 app.post('/add', function (req, res) {
-  console.log('im in add');
-  if (err) {
-    res.sendStatus(500);
-  } else {
     console.log(req.body);
-    res.send('I got it');
-  }
+    res.sendStatus(201);
 });
 
 app.post('/stats', function (req, res) {

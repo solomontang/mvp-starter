@@ -27,7 +27,7 @@ class Search extends React.Component {
   }
 
   search(e) {
-    console.log(this.state.user);
+    // console.log(this.state.user);
     this.props.onSearch(this.state.user, '/stats');
     e.preventDefault();
   }

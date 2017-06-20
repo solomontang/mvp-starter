@@ -37,16 +37,19 @@ class App extends React.Component {
   }
 
   search(term, endpoint) {
-    console.log(term);
+    // console.log(term);
     console.log(endpoint);
     $.ajax({
       type: 'POST',
       url: endpoint, 
       data: {name: term},
       success: (data) => {
-        this.setState({
-          stats: data.stats
-        });
+        console.log(data);
+        if(typeof data === 'object') {
+          this.setState({
+            stats: data.stats
+          });
+        }
       },
       error: (err) => {
         console.log('err', err);

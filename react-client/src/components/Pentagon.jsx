@@ -29,7 +29,7 @@ class Pentagon extends React.Component {
     ctx.fillStyle = 'rgba(200, 200, 200, 0.9)';
     ctx.fillText('Farming', 180, 125);
     ctx.fillText('Fighting', -30, -10);
-    ctx.fillText('Versitility', -250, 125);
+    ctx.fillText('Versatility', -250, 125);
     ctx.fillText('Pushing', -180, 375);
     ctx.fillText('Supporting', 120, 375);
     ctx.setTransform(1, 0, 0, 1, 0, 0);
