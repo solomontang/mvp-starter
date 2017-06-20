@@ -15,7 +15,7 @@ db.once('open', function() {
 var StatsSchema = mongoose.Schema({
   username: String,
   steamId: {type: Number, unique: true},
-  stats: Schema.Types.Mixed,
+  stats: [],
 });
 
 // StatsSchema.methods.selectAll = function(cb) {
@@ -23,8 +23,6 @@ var StatsSchema = mongoose.Schema({
 // };
 
 var Stat = mongoose.model('PlayerStat', StatsSchema);
-
-
 
 var selectAll = function(callback) {
   Stat.find({}, function(err, stats) {

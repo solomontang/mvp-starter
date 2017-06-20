@@ -51,21 +51,30 @@ app.post('/stats', function (req, res) {
     similarity: 1
   }
   qStr = queryString.stringify(params);
+
   request('https://api.opendota.com/api/search?' + qStr, function( err, player) {
     var body = JSON.parse(player.body);
     var accId = body[0].account_id;
-    console.log(accId);
-    // res.send(data.body);
-    // var params = {
 
-    // }
     request(`https://api.opendota.com/api/players/${accId}/recentMatches`, function (err, recentMatches) {
+      recentMatches = JSON.parse(recentMatches.body);
       console.log(recentMatches);
-      res.send(JSON.parse(recentMatches.body));
+      var newPlayer = {
+        username: body[0].personaname,
+        steamId: body[0].account_id,
+        stats: recentMatches
+      }
+
+      var instance = new stats.Stat(newPlayer);
+      instance.save( err => {
+        if (err) {
+          console.log(err);
+        }
+        res.send(recentMatches);
+      });
     });
   });
-  
-})
+});
 
 app.listen(3000, function() {
   console.log('listening on port 3000!');
