@@ -8,7 +8,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
-      items: [],
+      recentMatches: [],
       stats: {
         fighting: 0,
         versitility: 0,
@@ -43,10 +43,9 @@ class App extends React.Component {
       data: {name: term},
       success: (data) => {
         console.log(data);
-        // this.setState({
-
-        //   items: data
-        // })
+        this.setState({
+          recentMatches: data
+        });
       },
       error: (err) => {
         console.log('err', err);

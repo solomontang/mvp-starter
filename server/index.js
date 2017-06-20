@@ -55,22 +55,25 @@ app.post('/stats', function (req, res) {
   request('https://api.opendota.com/api/search?' + qStr, function( err, player) {
     var body = JSON.parse(player.body);
     var accId = body[0].account_id;
+    var alias = body[0].personaname;
 
     request(`https://api.opendota.com/api/players/${accId}/recentMatches`, function (err, recentMatches) {
       recentMatches = JSON.parse(recentMatches.body);
       console.log(recentMatches);
       var newPlayer = {
-        username: body[0].personaname,
-        steamId: body[0].account_id,
+        username: alias,
+        steamId: accId,
         stats: recentMatches
       }
 
       var instance = new stats.Stat(newPlayer);
       instance.save( err => {
         if (err) {
-          console.log(err);
+          console.log('Entry Already Exists');
+          res.sendStatus(500);
+        } else {
+          res.send(recentMatches);
         }
-        res.send(recentMatches);
       });
     });
   });
