@@ -9,40 +9,57 @@ class Pentagon extends React.Component {
   }
 
   componentDidMount() {
-    this.drawPentagon();
+    this.renderGraph();
   }
 
   componentWillReceiveProps(newProps) {
-    this.setState(newProps, this.drawPentagon);
+    this.setState(newProps, () => {
+      this.renderGraph();
+    });
   }
 
-  drawPentagon() {
-
+  renderGraph() {
     var canvas = document.getElementById('canvas');
     var ctx = canvas.getContext('2d');
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    ctx.beginPath();
-    ctx.translate(200,20);
-    var stats = [
+    this.drawPentagon([1, 1, 1, 1, 1], 'rgba(255, 255, 255, 0.2)', true);
+    this.drawPentagon([0.5, 0.5, 0.5, 0.5, 0.5], 'rgba(168, 25, 25, 0.1)', false)
+
+    var playerStats = [
       this.state.stats.farming,
       this.state.stats.fighting,
       this.state.stats.versitility,
       this.state.stats.pushing,
       this.state.stats.supporting
     ];
-    console.log('draw penta', stats);
+
+    this.drawPentagon(playerStats,'rgba(255, 165, 0, 0.3)')
+  }
+
+  drawPentagon(playerStats,
+              color = 'rgba(255, 255, 255, 0.2)',
+              fill = true) {
+
+    var canvas = document.getElementById('canvas');
+    var ctx = canvas.getContext('2d');
+
+    ctx.beginPath();
+    ctx.translate(200,20);
+    
+    // console.log('draw penta', playerStats);
     for (var i = 0; i < 5; i++) {
-      var x = Math.cos((18+i*72)/180 * Math.PI) * 200 * stats[i];
-      var y = 200 - Math.sin((18+i*72)/180*Math.PI) * 200 * stats[i];
+      var x = Math.cos((18+i*72)/180 * Math.PI) * 200 * playerStats[i];
+      var y = 200 - Math.sin((18+i*72)/180*Math.PI) * 200 * playerStats[i];
       // console.log('x: ' + x, 'y: ' + y);
       ctx.lineTo(x, y);
     }
 
     ctx.setTransform(1, 0, 0, 1, 0, 0);
-    ctx.fillStyle = 'rgba(255, 165, 0, 0.3)';
-    ctx.fill();
+    ctx.fillStyle = color;
+    ctx.closePath();
+    fill ? ctx.fill() : ctx.stroke();
   }
 
   render() {

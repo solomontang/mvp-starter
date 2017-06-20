@@ -18,23 +18,17 @@ var StatsSchema = mongoose.Schema({
   stats: Schema.Types.Mixed,
 });
 
-// StatsSchema.methods.selectAll = function(cb) {
-//   return this.model('PlayerStat').find({}, cb);
-// };
-
 var Stat = mongoose.model('PlayerStat', StatsSchema);
 
-// console.log(Stat.findOneAndUpdate());
-
-var selectAll = function(callback) {
-  Stat.find({}, function(err, stats) {
-    if(err) {
-      callback(err, null);
-    } else {
-      callback(null, stats);
-    }
-  });
-};
+// var selectAll = function(callback) {
+//   Stat.find({}, function(err, stats) {
+//     if(err) {
+//       callback(err, null);
+//     } else {
+//       callback(null, stats);
+//     }
+//   });
+// };
 
 module.exports = Stat;
 // module.exports.selectAll = selectAll;
