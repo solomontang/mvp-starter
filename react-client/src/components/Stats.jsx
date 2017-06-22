@@ -4,7 +4,7 @@ import Pentagon from './Pentagon.jsx';
 
 const Stats = (props) => (
   <div>
-    <h4> Stats Component </h4>
+    <h4> Playstyle over most recent 20 matches </h4>
     <Pentagon stats={props.stats} className='canvas'/>
     <div>
       <div className="statNumbers">

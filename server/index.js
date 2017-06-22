@@ -43,7 +43,7 @@ app.post('/stats', function (req, res) {
   console.log(req.body);
   var params = {
     q: req.body.name,
-    similarity: 1
+    similarity: 0.8
   }
   qStr = queryString.stringify(params);
 

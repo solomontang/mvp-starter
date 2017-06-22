@@ -59,7 +59,7 @@ class App extends React.Component {
 
   render () {
     return (<div>
-      <h1>Your Stats</h1>
+      <h1>Dota 2 Stats Overview</h1>
       <Search onSearch={this.search.bind(this)} />
       <Stats stats={this.state.stats}/>
 

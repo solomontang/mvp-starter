@@ -12,10 +12,10 @@ module.exports.CalculateStats = (recentMatches) => {
   })
 
   stats.versitility = versitility.size / 20;
-  stats.fighting = ((stats.fighting / 20) / 50000 )> 1 ? 1 : (stats.fighting / matches) / 50000;
+  stats.fighting = ((stats.fighting / 20) / 30000 )> 1 ? 1 : (stats.fighting / matches) / 30000;
   stats.supporting = ((stats.supporting / 20) / 2000) > 1 ? 1 : (stats.supporting / matches) / 2000;
-  stats.pushing = ((stats.pushing / 20) / 7500) > 1 ? 1 : (stats.pushing / matches) / 7500;
-  stats.farming = ((stats.farming / 20) / 400) > 1 ? 1 : (stats.farming / matches) / 400;
+  stats.pushing = ((stats.pushing / 20) / 4000) > 1 ? 1 : (stats.pushing / matches) / 7500;
+  stats.farming = ((stats.farming / 20) / 300) > 1 ? 1 : (stats.farming / matches) / 400;
 
   Object.keys(stats).forEach(key => {
     stats[key] = Number(stats[key].toFixed(2));
